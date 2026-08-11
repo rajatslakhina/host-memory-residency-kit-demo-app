@@ -55,7 +55,9 @@ XCRemoteSwiftPackageReference "host-memory-residency-kit"
 
 Resolved against a **released version range** — `2.0.0 ..< 3.0.0` — rather than tracking `main`. That is the difference that matters for a portfolio artifact: branch-tracking means every clone and every CI run resolves whatever `main` happened to be that day.
 
-It is a range, not a pin, so a minor release would be picked up by a fresh resolve. `Package.resolved` is deliberately **not** gitignored, so the exact version this project last built against is recorded in the repository and a clone reproduces it until someone re-resolves on purpose.
+It is a range, not a pin, so a minor release would be picked up by a fresh resolve.
+
+`Package.resolved` is deliberately **not** gitignored — but to be exact about what that does and does not mean: **no `Package.resolved` is committed in this repository yet.** The file is written by Xcode (or `xcodebuild -resolvePackageDependencies`) into `Demo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/`, and this project has never been opened on a machine that could commit one back. What exists instead is CI: every run resolves the range from scratch and prints the resulting `Package.resolved` in the **Show resolved versions** step, so the exact version each build used is on the public record even though the file is not in the tree. The first person to open this project in Xcode will produce one, and it is not gitignored, so it will be committable.
 
 ---
 
