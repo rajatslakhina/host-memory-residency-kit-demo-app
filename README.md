@@ -67,7 +67,7 @@ Stated precisely, because "it builds" and "it ran" are different claims and only
 
 - The library's own test suite: `swift build -Xswiftc -warnings-as-errors`, `swift build --build-tests -Xswiftc -warnings-as-errors` and `swift test` — **85 tests, 0 failures**, clean from a wiped `.build` under Swift 6 language mode. Those ran on the library, not on this app.
 - `project.pbxproj` was checked for balanced braces and parentheses and for dangling object references before it was committed. 23 objects defined, 23 referenced, zero dangling.
-- CI STATUS PLACEHOLDER
+- **This repo's CI on `macos-15` has run and passed.** `xcodebuild -resolvePackageDependencies` resolved `host-memory-residency-kit` from GitHub at the released version, printed the resulting `Package.resolved`, and `xcodebuild build -scheme Demo -destination 'generic/platform=iOS Simulator'` compiled the app against it. Every step green. That is the cheapest honest substitute for a human opening the project: it proves the project file is valid, the remote package genuinely resolves, and this app compiles. See the [Actions tab](https://github.com/rajatslakhina/host-memory-residency-kit-demo-app/actions).
 
 **What was not:**
 
